@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>JHU Course Visualizer</title>
-</head>
 <body>
-    
+
+<div id="id01"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "https://isis.jhu.edu/api/classes/codes/schools?key=AD6Suus1io7Gwe2PGuM3Do52hf7l87m2";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        myFunction(myArr);
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr) {
+    var out = "'<select>'";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        out += '<option>' + arr[i].Name + '</option><br>';
+    }
+    out+='</select>';
+    document.getElementById("id01").innerHTML = out;
+}
+</script>
+
 </body>
 </html>

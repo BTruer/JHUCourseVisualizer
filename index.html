@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html>
+<head>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
 <body>
-    
-    
-<div id="id01"></div>
 
-<script>
-var xmlhttp = new XMLHttpRequest();
-var url = "https://isis.jhu.edu/api/classes/codes/schools?key=AD6Suus1io7Gwe2PGuM3Do52hf7l87m2";
+<div class="content"></div>
+<div class="Dcontent"></div>
+	<script type="text/javascript">
+		$(function() {
+			var url = 'https://isis.jhu.edu/api/classes/codes/schools?key=AD6Suus1io7Gwe2PGuM3Do52hf7l87m2';
+		  	var urlD;
 
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {   //if url is good
-        var myArr = JSON.parse(xmlhttp.responseText);         //create a json object array of a list of school names
-        myFunction(myArr);
-        
-    }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+			$.get(url, function (data) {
+				$('.content').append('<select></select>');
+			    for (var i = 0; i < data.length; i++) {
+					$('.content select').append('<option>' + data[i].Name + '</option>');
+				}
+			});
 
-function myFunction(arr) {
-    var out = "'<select>'";             //parsing through the object to get only text
-    var i;
-    for(i = 0; i < arr.length; i++) {
-        out += '<option>' + arr[i].Name + '</option><br>';
-    }
-    out+='</select>';
-    document.getElementById("id01").innerHTML = out;
-}
-</script>
-        
+			$(document).on('change', '.content select', function () {
+				var str=encodeURIComponent($( ".content option:selected").val());
+				urlD = 'https://isis.jhu.edu/api/classes/codes/departments/' + str+ 
+			'?key=AD6Suus1io7Gwe2PGuM3Do52hf7l87m2';
+				getDepartments();
+			});
+
+
+			function getDepartments() {
+				$.get(urlD, function (data) {
+					$('.Dcontent').append('<select></select>');
+					for (var i = 0; i < data.length; i++) {
+						$('.Dcontent select').append('<option>' + data[i].DepartmentName + '</option>');
+					}
+				});
+      		}
+		});
+	</script>
 </body>
-    
-    <select id="id01">
-       
-    </select>
-    
-    
 </html>

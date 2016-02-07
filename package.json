@@ -1,0 +1,14 @@
+{
+  "name": "jhucoursevisualizer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "",
+  "devDependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "request": "^2.69.0",
+    "sleep": "^3.0.1",
+    "underscore": "^1.8.3"
+  }
+}

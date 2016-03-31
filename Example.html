@@ -1,0 +1,128 @@
+<html>
+<head>
+		<title>Example Graph</title>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
+		<script src="https://cdn.rawgit.com/cpettitt/dagre/v0.7.4/dist/dagre.min.js"></script>
+		<script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-dagre/1.1.2/cytoscape-dagre.js"></script>
+        
+    
+        <script></script>
+            
+            <style>
+			body {
+				font-family: helvetica;
+				font-size: 14px;
+			}
+
+			#cy {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 999;
+			}
+
+			h1 {
+				opacity: 0.5;
+				font-size: 1em;
+			}
+		</style>
+
+		<script>
+			$(function(){
+
+				var cy = window.cy = cytoscape({
+					container: document.getElementById('cy'),
+
+          boxSelectionEnabled: false,
+          autounselectify: true,
+
+					layout: {
+						name: 'dagre'
+					},
+
+					style: [
+						{
+							selector: 'node',
+							style: {
+								'content': 'data(id)',
+								'text-opacity': 0.5,
+								'text-valign': 'center',
+								'text-halign': 'right',
+								'background-color': '#11479e'
+							}
+						},
+
+						{
+							selector: 'edge',
+							style: {
+								'width': 4,
+								'target-arrow-shape': 'triangle',
+								'line-color': '#00FFFF',
+								'target-arrow-color': '#9dbaea'
+							}
+						}
+					],
+
+					elements: {
+						nodes: [
+							{ data: { id: '428' } },
+							{ data: { id: '447' } },
+							{ data: { id: '416' } },
+							{ data: { id: '415' } },
+							{ data: { id: '344' } },
+							{ data: { id: '336' } },
+							{ data: { id: '334' } },
+							{ data: { id: '314' } },
+							{ data: { id: '214' } },
+							{ data: { id: '213' } },
+							{ data: { id: '211' } },
+							{ data: { id: '206' } },
+							{ data: { id: '205' } },
+							{ data: { id: '112' } },
+							{ data: { id: '111' } }
+						],
+						edges: [
+							{ data: { source: '111', target: '112' } },
+							{ data: { source: '111', target: '205' } },
+							{ data: { source: '112', target: '211' } },
+							{ data: { source: '112', target: '205' } },
+							{ data: { source: '211', target: '214' } },
+							{ data: { source: '205', target: '206' } },
+							{ data: { source: '205', target: '314' } },
+							{ data: { source: '211', target: '314' } },
+							{ data: { source: '314', target: '428' } },
+							{ data: { source: '334', target: '415' } },
+							{ data: { source: '211', target: '416' } },
+							{ data: { source: '334', target: '416' } },
+							{ data: { source: '112', target: '213' } },
+							{ data: { source: '112', target: '344' } },
+							{ data: { source: '213', target: '334' } },
+							{ data: { source: '344', target: '416' } },
+							{ data: { source: '214', target: '314' } },
+							{ data: { source: '314', target: '415' } },
+							{ data: { source: '211', target: '336' } },
+							{ data: { source: '314', target: '447' } },
+							
+							
+						]
+					},
+				});
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<h1>JHU:School.Dept</h1>
+
+		<div id="cy"></div>
+
+	</body>
+
+</html>

@@ -1,1 +1,1 @@
-# JHUCourseVisualizer
+# [INACTIVE] JHUCourseVisualizer
